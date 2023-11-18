@@ -3,7 +3,7 @@ eureka:
         fetch-registry: true
         register-with-eureka: true
         service-url:
-            defaultZone: http://localhost:8761/eureka
+            defaultZone: http://eureka-server:8761/eureka
 logging:
     pattern:
         level: '"%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"'
@@ -20,4 +20,8 @@ spring:
             predicates:
               - Path=/api/v1/customers/**
 
+management:
+  zipkin:
+    tracing:
+        endpoint: http://zipkin:9411
 
