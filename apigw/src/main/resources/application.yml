@@ -21,3 +21,8 @@ spring:
               - Path=/api/v1/customers/**
 
 
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

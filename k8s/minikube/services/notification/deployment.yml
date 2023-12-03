@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification
+  labels:
+    app: notification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification
+  template:
+    metadata:
+      name: notification
+      labels:
+        app: notification
+    spec:
+      containers:
+        - name: notification
+          image: patikax/notification:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+            - name: SPRING_DATASOURCE_USERNAME
+              value: patika
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://microservice.postgres.database.azure.com:5432/notification
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: password0-0
+      restartPolicy: Always
